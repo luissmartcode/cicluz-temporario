@@ -1,0 +1,42 @@
+.tela-circulos {
+    display: flex;
+    gap:3vw;
+}
+
+
+
+
+
+
+.area-circulos {
+    height: 100%;
+    background-color: blue;
+    max-width: var(--altura-area-circulo);
+}
+
+.legenda-svg {
+    background-color: pink;
+}
+
+.svg-circulos {
+    width: var(--altura-area-circulo);
+    height: var(--altura-area-circulo);
+    background-color: white;    
+    margin: 0;
+  }
+  
+  .svg-circulos svg {
+    position: absolute;
+    scale: 1
+  }
+  .area-bonecos {
+    background-color: orange;
+}
+
+#circulo-fundo {
+  fill:white;
+}
+
+#circulo-centro {
+  fill:white;
+}

@@ -1,0 +1,57 @@
+:root {
+    --altura-nav: 10vh;
+    --altura-main: calc(100vh - var(--altura-nav));
+    --altura-area-circulo: 45vw;
+    --tamanho-conteudo-circulo: calc(var(--altura-area-circulo) * 0.03);
+    --borda-lateral: 2%;
+}
+
+body {
+    min-height: 100vh;
+    max-width: 100vw;
+}
+
+.nav {
+    background-color: red;
+    width: 100%;
+    height: var(--altura-nav);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--borda-lateral);
+}
+
+.btn-nav {
+    font-size: calc(var(--altura-nav) / 2);
+    color: white;
+    margin: 0;
+}
+
+.main {
+    background-color: green;
+    height: var(--altura-main);
+    padding: 0 var(--borda-lateral);
+}
+
+
+
+.area-opcoes {
+    height: 100%;
+    background-color: yellow;
+    flex-grow: 1;
+    display: flex;
+    gap:5%
+}
+
+.topico {
+    height: 100px;
+    width: 50%;
+    max-width: 50%;
+    background-color: lightgreen;
+}
+.subtopico {
+    height: 100px;
+    width: 50%;
+    max-width: 50%;
+    background-color: rgb(0, 225, 255);
+}
+

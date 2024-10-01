@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Cicluz</title>
+  <link href="estilos/geral.css" rel="stylesheet" type="text/css" />
+  <link href="estilos/default.css" rel="stylesheet" type="text/css" />
+  <link href="estilos/circulosCorretos.css" rel="stylesheet" type="text/css" />
+  <link href="estilos/pedacosCirculosCorretos.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <!-- <link href="estilos/style.css" rel="stylesheet" type="text/css" />
+  <link href="estilos/circulos.css" rel="stylesheet" type="text/css" />
+  <link href="estilos/top-subtop.css" rel="stylesheet" type="text/css" />
+  <link href="estilos/modal.css" rel="stylesheet" type="text/css" />
+  <link href="estilos/escolhas.css" rel="stylesheet" type="text/css" />
+  <link href="estilos/categorias.css" rel="stylesheet" type="text/css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script> -->
+</head>
+
+<body>
+
+    <nav class="nav">
+      <i id="divescolhas-btn" class="fa-solid fa-circle-right btn-nav"></i>
+    </nav>
+    <main class="main tela-circulos">
+
+      <section class="area-circulos">
+        <div class="area-svg">
+          <div class="legenda-svg">Essa é a legenda descrevendo a imagem.</div>
+          <figure class="svg-circulos">   
+
+            
+          </figure>
+        </div>
+
+        <figure class="area-bonecos">
+          <img src="exemplo.jpg" alt="Imagem de exemplo">          
+        </figure>
+        
+      </section>
+      <section class="area-opcoes">
+        <section class="topico">
+
+        </section>
+
+        <section class="subtopico">
+          
+        </section>
+        
+      </section>
+    </main>
+    
+
+
+    
+    
+    
+ 
+
+  </div>
+  <script type="module" src="scripts/scripts-circulo-correto.js"></script>
+  <!-- <script type="module" src="scripts/script.js"></script> -->
+  <!-- <script type="module" src="scripts/scripts-banco.js"></script> -->
+  <!-- <script type="module" src="scripts/scripts-circulo.js"></script>
+  <script type="module" src="scripts/scripts-top-subtop.js"></script>
+  <script type="module" src="scripts/scripts-modal.js"></script> -->
+  <!-- <script>
+    
+    document.addEventListener("DOMContentLoaded", function() {
+      //criarCirculos()
+    });
+
+
+    function criarCirculos() {
+      const quantidade = 10;
+      const figure = document.getElementsByClassName('svg-circulos');
+      figure[0].innerHTML = '';
+      criarCirculo(quantidade, figure, 'ser') 
+      var partesTexto = document.getElementsByClassName('objeto-texto-circulo');
+      if(partesTexto) {
+        [...partesTexto].forEach(i => {
+          i.setAttribute("width", i.firstChild.clientWidth)
+          i.setAttribute("height", i.firstChild.clientHeight)
+        })
+      }        
+      var pedacosCirculo = document.getElementsByClassName('partes-circulos');
+      if(pedacosCirculo) {
+        [...pedacosCirculo].forEach(i => {
+          i.addEventListener('mouseenter', () => {
+            i.parentElement.appendChild(i);
+            i.setAttribute('filter', 'url(#sombra)') 
+          });
+
+          i.addEventListener('mouseleave', () => {
+            i.setAttribute('filter', '');
+          })
+        })
+      }
+    }
+
+    function criarTextoIcone(texto, icone, id) {
+      const foreignObject = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+      foreignObject.classList = "objeto-texto-circulo"
+      foreignObject.setAttribute('id', id)      
+
+      const div = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
+      div.style.width = "fit-content"
+      div.innerHTML = `<i class="bi ${icone}"></i><span>${texto}</span>`;
+      div.classList = "texto-circulo"
+
+      foreignObject.appendChild(div);
+      return foreignObject;
+    }
+
+    function construirPedacoCirculo(areaCirculo, grauParte, i) {
+      const grauInicial = 0;
+        const inicio = i * grauParte + grauInicial;
+        const anguloInicial = inicio - (grauParte/2);
+        const anguloFinal = inicio + (grauParte/2);        
+
+        const diametro = areaCirculo * 0.9;
+        const raioExterno = diametro/2;
+        const grossura = areaCirculo*0.2        
+        const raioInterno = raioExterno - grossura
+
+        const coordenadasExternas = getCoordFromDegrees(anguloInicial, raioExterno, diametro);
+        const coordenadasInternas = getCoordFromDegrees(anguloFinal, raioExterno, diametro);    
+        const ligacaoDireita = getCoordFromDegrees(anguloFinal, raioInterno, diametro);
+        const ligacaoEsquerda = getCoordFromDegrees(anguloInicial, raioInterno, diametro);
+        const d = `M ${coordenadasExternas} 
+        A ${raioExterno} ${raioExterno} 0 0 1 ${coordenadasInternas} 
+        L ${ligacaoDireita}
+        A ${raioInterno} ${raioInterno} 0 0 0 ${ligacaoEsquerda}Z`  
+
+        const pedacoCirculo = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        const cor = i == 0 ? 'red' : 'cyan'
+        pedacoCirculo.setAttribute("fill", cor);
+        pedacoCirculo.setAttribute("stroke", cor);
+        pedacoCirculo.setAttribute("stroke-width", "0.8px");
+        pedacoCirculo.setAttribute("d", d);  
+        return pedacoCirculo
+    }
+
+    function criarElementoHtml(pedacoCirculo, foreignObject, pontoCentralElemento, svgCanvas, figure) {
+      const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      group.appendChild(pedacoCirculo)
+      //group.appendChild(circlePath2)
+      group.appendChild(foreignObject)
+      group.classList = "partes-circulos"
+      group.style.transformOrigin = pontoCentralElemento 
+      return group
+    }
+    
+    function criarCirculo(quantidade, figure, tipo) {
+
+      const grauParte = (360 / 10);
+      const svgCanvas = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svgCanvas.appendChild(criarSombraCirculo())
+      svgCanvas.style.height = '100%';
+      svgCanvas.style.width = '100%';
+      const areaCirculo = figure[0].clientWidth;
+      for(let i =0; i<quantidade; i++) {
+        const grauInicial = 0;
+        const inicio = i * grauParte + grauInicial;
+        const anguloInicial = inicio - (grauParte/2);
+        const anguloFinal = inicio + (grauParte/2);        
+
+        const diametro = areaCirculo * 0.9;
+        const raioExterno = diametro/2;
+        const grossura = areaCirculo*0.2        
+        const raioInterno = raioExterno - grossura;
+
+        const id = `${tipo}-${i}`
+
+        const pedacoCirculo = construirPedacoCirculo(areaCirculo, grauParte, i);
+
+        foreignObject = criarTextoIcone('asdasd', 'bi-star', id);
+
+        const raioCentroPedaco = (raioExterno + raioInterno) / 2
+
+        // const [LX2, LY2] = getCoordFromDegrees(anguloFinal, centroPedaco, diametro);
+        // const [nX2, nY2] = getCoordFromDegrees(anguloInicial, centroPedaco, diametro);
+        // d2 = `M ${nX2} ${nY2} 
+        // A ${centroPedaco} ${centroPedaco} 0 0 1 ${LX2} ${LY2}`
+
+        // const circlePath2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        // circlePath2.setAttribute("id", "interno");
+        // circlePath2.setAttribute("fill", "none");
+        // circlePath2.setAttribute("stroke", "black");
+        // circlePath2.setAttribute("stroke-width", "2");
+        // circlePath2.setAttribute("d", d2);      
+
+      const [centroElementoX, centroElementoY] = getCoordFromDegrees(anguloFinal, 0, diametro);
+      grupo = criarElementoHtml(pedacoCirculo,foreignObject,`${centroElementoX + diametro*0.05}px ${centroElementoY + diametro*0.05}px`, svgCanvas, figure)
+      svgCanvas.appendChild(grupo)
+      figure[0].appendChild(svgCanvas);
+
+      const centroPedaco = (anguloFinal+anguloInicial) / 2
+      const [centroItemX, centroItemY] = getCoordFromDegrees(centroPedaco, raioCentroPedaco, diametro);
+        
+      foreignObject.setAttribute("transform", `translate(${centroItemX - foreignObject.firstChild.clientWidth / 2}, ${centroItemY - foreignObject.firstChild.clientHeight / 2})` )
+
+      }
+
+    }
+
+    function getCoordFromDegrees(angle, radius, diametro) {
+      const adjustedAngle = angle - 90;
+
+      const x = Math.cos(adjustedAngle * Math.PI / 180);
+      const y = Math.sin(adjustedAngle * Math.PI / 180);
+
+      const coordX = x * radius + diametro / 2;
+      const coordY = y * radius + diametro / 2;
+
+      return [coordX, coordY];
+    }
+
+    function criarSombraCirculo() {
+      const svg = document.getElementById('meuSvg');
+
+      // Cria o elemento <defs>
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+
+      // Cria o elemento <filter>
+      const filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+      filter.setAttribute('id', 'sombra');
+
+      // Cria o efeito de desfoque
+      const feGaussianBlur = document.createElementNS('http://www.w3.org/2000/svg', 'feGaussianBlur');
+      feGaussianBlur.setAttribute('in', 'SourceAlpha');
+      feGaussianBlur.setAttribute('stdDeviation', '5');
+
+      // Cria o deslocamento da sombra
+      const feOffset = document.createElementNS('http://www.w3.org/2000/svg', 'feOffset');
+      feOffset.setAttribute('dx', '2');
+      feOffset.setAttribute('dy', '2');
+      feOffset.setAttribute('result', 'offsetblur');
+
+      // Cria a cor da sombra
+      const feFlood = document.createElementNS('http://www.w3.org/2000/svg', 'feFlood');
+      feFlood.setAttribute('flood-color', 'rgba(0, 0, 0, 0.3)');
+
+      // Cria a combinação da sombra
+      const feComposite = document.createElementNS('http://www.w3.org/2000/svg', 'feComposite');
+      feComposite.setAttribute('in2', 'offsetblur');
+      feComposite.setAttribute('operator', 'in');
+
+      // Cria o elemento de mesclagem
+      const feMerge = document.createElementNS('http://www.w3.org/2000/svg', 'feMerge');
+      const feMergeNode1 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
+      const feMergeNode2 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
+      feMergeNode2.setAttribute('in', 'SourceGraphic');
+
+      // Monta a estrutura do filtro
+      feMerge.appendChild(feMergeNode1);
+      feMerge.appendChild(feMergeNode2);
+      filter.appendChild(feGaussianBlur);
+      filter.appendChild(feOffset);
+      filter.appendChild(feFlood);
+      filter.appendChild(feComposite);
+      filter.appendChild(feMerge);
+      defs.appendChild(filter);
+
+      return defs
+    }
+    
+  </script> -->
+
+</body>
+
+</html>
