@@ -21,9 +21,9 @@ app.post('/api/tabelas', async (req, res) => {
 
 // Rota para inserir um tópico
 app.post('/api/topicos', async (req, res) => {
-    const { nome, id_est } = req.body;
+    const { nome, id_est, posicao, polaridade } = req.body;
     try {
-        const result = await db.inserirTopico(nome, id_est);
+        const result = await db.inserirTopico(nome, id_est, posicao, polaridade);
         res.status(201).json({ message: result });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -31,9 +31,9 @@ app.post('/api/topicos', async (req, res) => {
 });
 
 app.post('/api/subtopicos', async (req, res) => {
-    const { nome, id_topico } = req.body;
+    const { nome, id_topico, posicao } = req.body;
     try {
-        const result = await db.inserirSubtopico(nome, id_topico);
+        const result = await db.inserirSubtopico(nome, id_topico, posicao);
         res.status(201).json({ message: result });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -51,6 +51,18 @@ app.get('/api/topicos/:id', async (req, res) => {
     }
 });
 
+app.get('/api/topicosPolaridade', async (req, res) => {
+    const { id_est, polaridade } = req.query; // Corrigido para req.query
+    console.log(id_est, polaridade);
+    try {
+        const topicos = await db.consultarTopicosPolaridade(id_est, polaridade);
+        res.status(200).json(topicos);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.get('/api/topico/:id', async (req, res) => {
     const id_topico = req.params.id || null;
     try {
@@ -60,6 +72,27 @@ app.get('/api/topico/:id', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+app.put('/api/topico', async (req, res) => {
+    const { nome, id_topico, posicao } = req.body;
+    try {
+        const topicos = await db.atualizarTopico(nome, id_topico, posicao);
+        res.status(200).json(topicos);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.put('/api/subtopico', async (req, res) => {
+    const { nome, id_subtopico, posicao } = req.body;
+    try {
+        const topicos = await db.atualizarSubtopico(nome, id_subtopico, posicao);
+        res.status(200).json(topicos);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 
 app.get('/api/subtopicos/:id', async (req, res) => {
     const id_topico = req.params.id || null;

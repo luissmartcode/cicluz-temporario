@@ -4,37 +4,38 @@
     overflow: auto;
     height: fit-content;
     color: white;
-    border-radius:10px;
+    border-radius: 10px;
     -webkit-box-shadow: 5px 5px 10px 3px rgb(0 0 0 / 8%);
   }
-  
+
   #opcoes2 {
     display: none;
-    max-width: 45%;
+    max-width: 50%;
   }
-  
+
   #logo {
     width: 100%;
     height: 100%;
-    filter:opacity(0.08)
+    filter: opacity(0.08);
+    object-fit: contain;
   }
 
   #opcoes3 {
-    max-width: 45%;
+    max-width: 50%;
   }
 
-  
+
   #container-caixa-opcoes {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    gap: 5%;
 
   }
 
 
 
 
-  
+
 
 
 
@@ -46,34 +47,34 @@
     border-bottom: 2px solid rgba(0, 0, 0, 0.15);
     align-items: center;
   }
-  
-  .caixa-opcoes-item:nth-child(even) {
-    background-color: rgba(0,0,0, 0.02);
+
+  .caixa-opcoes-item:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
   }
-  
+
   .caixa-opcoes-item:nth-child(n+2):hover {
-    background-color: rgba(0,0,0, 0.1);
-    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.08);
+
   }
 
   .titulo {
     display: flex;
     flex-direction: column;
-    background-color: rgba(0,0,0,0.05) !important;
+    background-color: rgba(0, 0, 0, 0.1) !important;
     align-items: stretch;
   }
-  
+
   .btntopico:hover {
-    cursor:pointer;
+    cursor: pointer;
   }
-  
+
   .btntopico {
     padding: 0 0 0 10px;
   }
-  
-  
 
-  
+
+
+
   .zoomIn {
     -webkit-animation-name: zoomIn;
     animation-name: zoomIn;
@@ -81,66 +82,73 @@
     animation-duration: 1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
-    -webkit-animation-iteration-count: 1; /* Para WebKit/Blink */
-    animation-iteration-count: 1; /* Para outros navegadores */
+    -webkit-animation-iteration-count: 1;
+    /* Para WebKit/Blink */
+    animation-iteration-count: 1;
+    /* Para outros navegadores */
   }
+
   @-webkit-keyframes zoomIn {
     0% {
       opacity: 0;
       -webkit-transform: scale3d(.3, .3, .3);
       transform: scale3d(.3, .3, .3);
     }
+
     50% {
       opacity: 1;
     }
   }
+
   @keyframes zoomIn {
     0% {
       opacity: 0;
       -webkit-transform: scale3d(.3, .3, .3);
       transform: scale3d(.3, .3, .3);
     }
+
     50% {
       opacity: 1;
     }
   }
 
-  
+
   *::-webkit-scrollbar {
     height: 10px;
     width: 0.7vw;
   }
+
   *::-webkit-scrollbar-track {
     border-radius: 5px;
     background-color: #DFE9EB;
   }
-  
+
   *::-webkit-scrollbar-track:hover {
     background-color: #D6E0E2;
   }
-  
+
   *::-webkit-scrollbar-track:active {
     background-color: #CAD3D5;
   }
-  
+
   *::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background-color: #757575;
   }
-  
+
   *::-webkit-scrollbar-thumb:hover {
     background-color: #A3A3A3;
   }
-  
+
   *::-webkit-scrollbar-thumb:active {
     background-color: #6F6F6F;
   }
 
   .caixa-icones {
     display: flex;
-    gap:1vw;
+    gap: 1vw;
   }
-  
+
   .divtitulo-caixa-opcoes {
     display: flex;
     justify-content: space-between;
@@ -148,20 +156,20 @@
     font-size: 1rem;
     align-items: center;
   }
-  
+
   .titulo-caixa-opcoes {
     display: flex;
     gap: 1vw;
     align-items: center;
     font-weight: bold;
   }
-  
+
   .topico-caixa-opcoes {
     font-size: 1.3vw;
     text-transform: capitalize;
     font-style: italic;
   }
-  
+
   .item {
     font-size: 0.9rem;
   }

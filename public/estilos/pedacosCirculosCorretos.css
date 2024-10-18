@@ -1,26 +1,26 @@
-
-
-
 .texto-circulo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: var(--tamanho-conteudo-circulo);
-    text-align: center;
-    color:white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: var(--tamanho-conteudo-circulo);
+  text-align: center;
+  color: white;
 }
-  
-  
-  
-  
-  
-  .parte-expandida:hover {
-    cursor: pointer;
-    scale: 1.05;
 
-  }
-  .parte-expandida:hover path {
-    stroke-width: 1px;
-    filter: brightness(0.9);
-  }
-  
+
+.parte-expandida,
+.partes-circulos path {
+  transition: all 0.3s ease
+}
+
+
+.parte-expandida:hover {
+  cursor: pointer;
+  scale: 1.05;
+  transition-delay: 0.15s;
+}
+
+.parte-expandida:hover path {
+  stroke-width: 1px;
+  filter: brightness(0.9);
+}

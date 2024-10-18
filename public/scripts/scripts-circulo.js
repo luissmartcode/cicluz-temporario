@@ -4,7 +4,13 @@ function criarOpcao(item) {
     var divopcao = document.createElement('div');
     divopcao.classList.add('opcao', 'item-conteudo', `div-item-${item.est}`);
     divopcao.addEventListener("click", (e) => {
-        exibirTopicos(item.id);
+        if (document.getElementById("opcoes2").innerHTML == '' || document.getElementById('titulo-topico-nome').innerHTML != item.nome) {
+            exibirTopicos(item.id);
+        } else {
+            document.getElementById("opcoes2").innerHTML = ''
+            document.getElementById("opcoes3").innerHTML = ''
+        }
+
     })
 
     var divconteudo = document.createElement('div');
@@ -38,12 +44,12 @@ function adicionarOpcao(resultado) {
         div.style.transform = `translate(0px, ${-raioCirculo}px) rotate(${grau}deg)`;
         let divOpcoes = document.getElementById("opcoes")
         let cor = opcoes[0].est == "ser" ? "black" : "white";
-        if(opcoes[0].est == "memorias") {
-            tamanhoItem = raioCirculo * 0.5; 
-            div.style.transformOrigin = `center ${distancia*0.98}px`;
-            div.style.transform = `translate(0px, ${-(raioCirculo/1.35)}px) rotate(${grau}deg)`;
+        if (opcoes[0].est == "memorias") {
+            tamanhoItem = raioCirculo * 0.5;
+            div.style.transformOrigin = `center ${distancia * 0.98}px`;
+            div.style.transform = `translate(0px, ${-(raioCirculo / 1.35)}px) rotate(${grau}deg)`;
             cor = "lightgray"
-        } 
+        }
 
         const root = document.documentElement;
         root.style.setProperty('--tamanho-item', `${tamanhoItem}px`);
@@ -56,10 +62,10 @@ function adicionarOpcao(resultado) {
         conteudo.firstChild.classList.add("item-conteudo")
         conteudo.lastChild.style.fontSize = `${tamanhoItem * 0.17}px`
         conteudo.lastChild.classList.add("item-conteudo")
-        if(opcoes[0].est == "memorias") { 
+        if (opcoes[0].est == "memorias") {
             conteudo.classList.add("itens-fixo")
         }
-        divOpcoes.appendChild(div);       
+        divOpcoes.appendChild(div);
 
     })
 
@@ -123,10 +129,14 @@ export class Circulo {
 
         if (CIRCULO.getAttribute('id') == "maior") {
             CIRCULO.addEventListener('mouseleave', (e) => {
-                if (!e.toElement.classList.contains('item-conteudo')) {
-                    alterarTamanho("padrao");
-                    document.getElementById("logo-svg").style.removeProperty("scale");
+                if (e.toElement) {
+                    if (!e.toElement.classList.contains('item-conteudo')) {
+                        alterarTamanho("padrao");
+                        document.getElementById("logo-svg").style.removeProperty("scale");
+                        document.getElementById('opcoes').innerHTML = ''
+                    }
                 }
+
 
             })
         }
@@ -182,7 +192,7 @@ export function alterarTamanho(tipoEvento) {
 
 function organizarCirculoCentro() {
     document.getElementById("opcaoCentral").innerHTML = "";
-    let opcoes = [1,2,3,4,5,6];
+    let opcoes = [1, 2, 3, 4, 5, 6];
     let circulo = document.getElementById("fixo");
     opcoes.forEach((item, index) => {
         var div = document.createElement('div');
@@ -192,16 +202,16 @@ function organizarCirculoCentro() {
         const tamanhoBorda = parseFloat(circulo.getAttribute('stroke-width'));
         let tamanhoItem = raioCirculo * 0.2;
         let distancia = raioCirculo + (tamanhoItem / 2);
-        div.style.transformOrigin = `center ${distancia*0.8}px`;
-        div.style.transform = `translate(0px, ${-(raioCirculo/1.3)}px) rotate(${grau}deg)`;
+        div.style.transformOrigin = `center ${distancia * 0.8}px`;
+        div.style.transform = `translate(0px, ${-(raioCirculo / 1.3)}px) rotate(${grau}deg)`;
 
 
         let divOpcoes = document.getElementById("opcaoCentral");
         const root = document.documentElement;
         root.style.setProperty('--tamanho-item-centro', `${tamanhoItem}px`);
 
-        
-        divOpcoes.appendChild(div);       
+
+        divOpcoes.appendChild(div);
 
     })
 }
@@ -210,7 +220,7 @@ export async function alterarTamanho_circuloMaiorExpandido(ALTURA_SVGCONTAINER, 
     const RAIO_MAIOR = ALTURA_SVGCONTAINER - (contornos.CONTORNO_MAIOR / 2);
     const RAIO_CENTRAL = (RAIO_MAIOR - (contornos.CONTORNO_MAIOR / 2)) - (contornos.CONTORNO_MENOR * 1.5);
     const RAIO_MENOR = (RAIO_CENTRAL - (contornos.CONTORNO_MENOR / 2)) - (contornos.CONTORNO_MENOR * 1.5);
-    const RAIO_FIXO = (RAIO_MENOR  - (contornos.CONTORNO_MENOR / 2)) - (contornos.CONTORNO_MENOR * 1.5);
+    const RAIO_FIXO = (RAIO_MENOR - (contornos.CONTORNO_MENOR / 2)) - (contornos.CONTORNO_MENOR * 1.5);
     const circulos = document.getElementsByClassName("circulo");
 
     [...circulos].forEach(i => {
@@ -239,7 +249,7 @@ export async function alterarTamanho_circuloCentralExpandido(ALTURA_SVGCONTAINER
     const RAIO_MAIOR = ALTURA_SVGCONTAINER - (contornos.CONTORNO_MENOR / 2);
     const RAIO_CENTRAL = (RAIO_MAIOR - (contornos.CONTORNO_MAIOR / 2)) - (contornos.CONTORNO_MENOR * 1.5);
     const RAIO_MENOR = (RAIO_CENTRAL - (contornos.CONTORNO_MAIOR / 2)) - (contornos.CONTORNO_MENOR * 1.5);
-    const RAIO_FIXO = (RAIO_MENOR - (contornos.CONTORNO_MENOR / 2) ) - (contornos.CONTORNO_MENOR * 1.5);
+    const RAIO_FIXO = (RAIO_MENOR - (contornos.CONTORNO_MENOR / 2)) - (contornos.CONTORNO_MENOR * 1.5);
     const circulos = document.getElementsByClassName("circulo");
 
     [...circulos].forEach(i => {

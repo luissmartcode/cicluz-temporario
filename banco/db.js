@@ -44,9 +44,9 @@ class Database {
             FROM topicos t
             LEFT JOIN eu_ser_ter_areas est ON t.id_est = est.id;
         `;
-    
+
         return new Promise((resolve, reject) => {
-            this.db.exec(sql, function(err) {
+            this.db.exec(sql, function (err) {
                 if (err) {
                     reject(err);
                 } else {
@@ -56,7 +56,7 @@ class Database {
             });
         });
     }
-    
+
     consultarEstAreas(est) {
         let sql = `SELECT * FROM eu_ser_ter_areas WHERE est = ? ORDER BY posicao`;
         return new Promise((resolve, reject) => {
@@ -83,10 +83,10 @@ class Database {
         });
     }
 
-    inserirTopico(nome, id_est) {
-        const sql = `INSERT INTO topicos (nome, id_est) VALUES (?, ?)`;
+    inserirTopico(nome, id_est, posicao, polaridade) {
+        const sql = `INSERT INTO topicos (nome, id_est, posicao, polaridade) VALUES (?, ?, ?, ?)`;
         return new Promise((resolve, reject) => {
-            this.db.run(sql, [nome, id_est], function (err) {
+            this.db.run(sql, [nome, id_est, posicao, polaridade], function (err) {
                 if (err) {
                     reject(err);
                 } else {
@@ -96,10 +96,27 @@ class Database {
         });
     }
 
-    inserirSubtopico(nome, id_topico) {
-        const sql = `INSERT INTO subtopicos (nome, id_topico) VALUES (?, ?)`;
+
+    atualizarTopico(nome, id, posicao) {
+        const sql = `UPDATE topicos SET nome = ?, posicao = ? WHERE id = ?`;
+        console.log(sql, nome, posicao, id)
         return new Promise((resolve, reject) => {
-            this.db.run(sql, [nome, id_topico], function (err) {
+            this.db.run(sql, [nome, posicao, id], function (err) {
+                if (err) {
+                    console.log(err)
+                    reject(err);
+                } else {
+                    console.log('eu')
+                    resolve(`Usuário inserido com ID: ${this.lastID}`);
+                }
+            });
+        });
+    }
+
+    inserirSubtopico(nome, id_topico, posicao) {
+        const sql = `INSERT INTO subtopicos (nome, id_topico, posicao) VALUES (?, ?, ?)`;
+        return new Promise((resolve, reject) => {
+            this.db.run(sql, [nome, id_topico, posicao], function (err) {
                 if (err) {
                     console.log('n deu')
                     reject(err);
@@ -111,9 +128,64 @@ class Database {
         });
     }
 
+    atualizarSubtopico(nome, id, posicao) {
+        const sql = `UPDATE subtopicos SET nome = ?, posicao = ? WHERE id = ?`;
+        console.log(sql, nome, posicao, id)
+        return new Promise((resolve, reject) => {
+            this.db.run(sql, [nome, posicao, id], function (err) {
+                if (err) {
+                    console.log(err)
+                    reject(err);
+                } else {
+                    console.log('deu')
+                    resolve(`Usuário inserido com ID: ${this.lastID}`);
+                }
+            });
+        });
+    }
+
 
     consultarTopicos(id_est) {
-        const sql = `SELECT * FROM vw_topicos WHERE est_id = ?`;
+        const sql = `SELECT * FROM vw_topicos WHERE est_id = ? ORDER BY posicao`;
+        return new Promise((resolve, reject) => {
+            this.db.all(sql, [id_est], (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+    }
+
+    consultarTopicosPolaridade(id_est, polaridade) {
+        const sql = `SELECT * FROM vw_topicos WHERE est_id = ? AND polaridade = ? ORDER BY posicao`;
+        return new Promise((resolve, reject) => {
+            this.db.all(sql, [id_est, polaridade], (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+    }
+
+    consultarQuantidadeTopicos(id_est) {
+        const sql = `SELECT COUNT(*) FROM vw_topicos WHERE est_id = ?`;
+        return new Promise((resolve, reject) => {
+            this.db.all(sql, [id_est], (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+    }
+
+    consultarQuantidadeTopicos(id_est) {
+        const sql = `SELECT COUNT(*) FROM vw_topicos WHERE est_id = ?`;
         return new Promise((resolve, reject) => {
             this.db.all(sql, [id_est], (err, rows) => {
                 if (err) {
@@ -141,7 +213,20 @@ class Database {
     }
 
     consultarSubtopicos(id_topico) {
-        const sql = `SELECT * FROM vw_subtopicos WHERE id_topico = ?`;
+        const sql = `SELECT * FROM vw_subtopicos WHERE id_topico = ? ORDER BY posicao`;
+        return new Promise((resolve, reject) => {
+            this.db.all(sql, [id_topico], (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+    }
+
+    consultarQuantidadeSubtopicos(id_topico) {
+        const sql = `SELECT COUNT(*) FROM vw_subtopicos WHERE id_topico = ?`;
         return new Promise((resolve, reject) => {
             this.db.all(sql, [id_topico], (err, rows) => {
                 if (err) {
@@ -197,9 +282,9 @@ class Database {
             });
         });
     }
-    
 
-    
+
+
 }
 
 module.exports = Database;
